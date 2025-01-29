@@ -76,23 +76,38 @@
         }
     </script>
     
-    <h2>Popular Cryptocurrencies & StartarBronze</h2>
+    <h2>Listed Tokens</h2>
     <div class="crypto-container" id="crypto-list"></div>
 
-    <div class="crypto-card">
-        <img src="https://tokeninsight.com/cdn-cgi/image/width=140,height=140,format=webp,quality=100,fit=cover/https://s2.tokeninsight.com/static/coins/img/STRB.png" alt="StartarBronze">
-        <h3>StartarBronze (STRB)</h3>
-        <p><a href="https://bscscan.com/token/0x550a5e9c90cc238dd1afd88a0680b4feeb5f8dd6" target="_blank">Smart Contract URL</a></p>
-        <p>Price: <span id="strb-price">Loading...</span></p>
+    <h2>Popular Cryptocurrencies</h2>
+    <div class="crypto-container">
+        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="Bitcoin"><h3>Bitcoin (BTC)</h3></div>
+        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png" alt="Ethereum"><h3>Ethereum (ETH)</h3></div>
+        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png" alt="BNB"><h3>Binance Coin (BNB)</h3></div>
+        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/5426.png" alt="Solana"><h3>Solana (SOL)</h3></div>
+        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png" alt="Polygon"><h3>Polygon (MATIC)</h3></div>
+        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png" alt="Tron"><h3>Tron (TRX)</h3></div>
+        <div class="crypto-card">
+            <img src="https://tokeninsight.com/cdn-cgi/image/width=140,height=140,format=webp,quality=100,fit=cover/https://s2.tokeninsight.com/static/coins/img/STRB.png" alt="StartarBronze">
+            <h3>StartarBronze (STRB)</h3>
+            <p><a href="https://bscscan.com/token/0x550a5e9c90cc238dd1afd88a0680b4feeb5f8dd6" target="_blank">Smart Contract URL</a></p>
+            <p>Price: <span id="strb-price">0.00000059</span></p>
+        </div>
     </div>
 
-    <h2>List Your Token</h2>
-    <div class="token-form">
-        <input type="text" id="token-name" placeholder="Token Name">
-        <input type="text" id="token-symbol" placeholder="Symbol">
-        <input type="text" id="token-address" placeholder="Contract Address">
-        <input type="text" id="token-logo" placeholder="Logo URL">
-        <button onclick="payAndListToken()">Pay Gas & List Token</button>
+    <h2>How to List Your Token</h2>
+    <div class="pricing-section">
+        <p>To list your token on XcryptoCap, please contact us at: <strong>notairebtc@yahoo.fr</strong></p>
+        <p>You will receive your <strong>XcryptoCap-Listing-Request-[Your Token Name]</strong> for submission.</p>
+        <p>Pricing:</p>
+        <ul>
+            <li>Ethereum: 50$ - 200$</li>
+            <li>Binance Smart Chain (BSC): 10$ - 50$</li>
+            <li>Polygon: 5$ - 30$</li>
+            <li>Solana: 15$ - 100$</li>
+            <li>Tron: 5$ - 30$</li>
+            <li>Other Blockchains: Contact us for a custom quote.</li>
+        </ul>
     </div>
 
     <footer>
@@ -110,30 +125,12 @@
             const email = document.getElementById("admin-email").value;
             const password = document.getElementById("admin-password").value;
 
-            try {
-                const response = await axios.post("https://xcryptocap.onrender.com/api/admin-login", { email, password });
-
-                if (response.data.success) {
-                    window.location.href = "admin.html";
-                } else {
-                    alert("Invalid credentials");
-                }
-            } catch (error) {
-                alert("Login failed. Please try again.");
+            if (email === "nzababouesse@gmail.com" && password === "11041989945600") {
+                window.location.href = "admin.html";
+            } else {
+                alert("Invalid credentials");
             }
         }
-
-        async function fetchSTRBPrice() {
-            try {
-                const response = await axios.get("https://api.tokeninsight.com/api/v1/ticker/strb", {
-                    headers: { 'TI_API_KEY': '1b1e088e25224cd79c3319f75dbe1a3d' }
-                });
-                document.getElementById("strb-price").innerText = "$" + response.data.data.price;
-            } catch (error) {
-                console.error("Failed to fetch STRB price", error);
-            }
-        }
-        fetchSTRBPrice();
     </script>
 </body>
 </html>
