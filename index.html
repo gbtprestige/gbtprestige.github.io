@@ -234,32 +234,23 @@
                 const strbResponse = await axios.get('https://api.tokeninsight.com/api/v1/token/price?symbol=STRB&apikey=Pro006549'); // Use your TokenInsight API key
                 document.getElementById('strb-price').textContent = strbResponse.data.price;
                 
-                // Fetch Bitcoin price from CoinGecko
-                const btcResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
-                    params: {
-                        ids: 'bitcoin',
-                        vs_currencies: 'usd'
-                    }
-                });
-                document.getElementById('btc-price').textContent = btcResponse.data.bitcoin.usd;
+                // Fetch Bitcoin price from Blockchain.com
+                const btcResponse = await axios.get('https://www.blockchain.com/explorer/assets/btc'); 
+                const btcPriceElement = document.getElementById('btc-price');
+                const btcPrice = btcResponse.data.match(/CURRENT ETHER PRICE \$(\d+\.\d+)/)[1]; // Extract price from Blockchain.com HTML
+                btcPriceElement.textContent = btcPrice;
 
-                // Fetch Solana price from CoinGecko
-                const solResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
-                    params: {
-                        ids: 'solana',
-                        vs_currencies: 'usd'
-                    }
-                });
-                document.getElementById('sol-price').textContent = solResponse.data.solana.usd;
+                // Fetch Solana price from Blockchain.com
+                const solResponse = await axios.get('https://www.blockchain.com/fr/explorer/assets/SOL');
+                const solPriceElement = document.getElementById('sol-price');
+                const solPrice = solResponse.data.match(/CURRENT ETHER PRICE \$(\d+\.\d+)/)[1]; // Extract price from Blockchain.com HTML
+                solPriceElement.textContent = solPrice;
 
-                // Fetch Ethereum price from CoinGecko
-                const ethResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
-                    params: {
-                        ids: 'ethereum',
-                        vs_currencies: 'usd'
-                    }
-                });
-                document.getElementById('eth-price').textContent = ethResponse.data.ethereum.usd;
+                // Fetch Ethereum price from Etherscan.io
+                const ethResponse = await axios.get('https://etherscan.io/chart/etherprice'); 
+                const ethPriceElement = document.getElementById('eth-price');
+                const ethPrice = ethResponse.data.match(/CURRENT ETHER PRICE \$(\d+\.\d+)/)[1]; // Extract price from Etherscan.io HTML
+                ethPriceElement.textContent = ethPrice;
             } catch (error) {
                 console.error('Error fetching prices:', error);
             }
