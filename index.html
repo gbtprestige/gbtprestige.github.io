@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XcryptoCap - The Leading Crypto Listing Platform</title>
-    <meta name="description" content="XcryptoCap is the best platform to list your cryptocurrency, providing real-time price updates and seamless integration with MetaMask and TrustWallet.">
-    <meta name="keywords" content="crypto listing, cryptocurrency, token listing, MetaMask, TrustWallet, Bitcoin, Ethereum, Binance, BscScan, Etherscan, trading, swapping">
+    <title>XcryptoCap - La plateforme de référencement crypto</title>
+    <meta name="description" content="XcryptoCap est la meilleure plateforme pour lister votre crypto-monnaie, offrant des mises à jour de prix en temps réel et une intégration transparente avec MetaMask et TrustWallet.">
+    <meta name="keywords" content="crypto listing, crypto-monnaie, token listing, MetaMask, TrustWallet, Bitcoin, Ethereum, Binance, BscScan, Etherscan, trading, échange">
     <meta name="author" content="XcryptoCap">
-    <meta property="og:title" content="XcryptoCap - The Leading Crypto Listing Platform">
-    <meta property="og:description" content="List your token and gain visibility. Real-time price updates, integration with major wallets, and direct visibility on Etherscan and BscScan.">
+    <meta property="og:title" content="XcryptoCap - La plateforme de référencement crypto">
+    <meta property="og:description" content="Listez votre token et gagnez en visibilité. Mises à jour de prix en temps réel, intégration avec les principaux portefeuilles et visibilité directe sur Etherscan et BscScan.">
     <meta property="og:image" content="https://xcryptocap.com/logo.png">
     <meta property="og:url" content="https://xcryptocap.com">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="XcryptoCap - List Your Token Today">
-    <meta name="twitter:description" content="Join the future of cryptocurrency listing with XcryptoCap.">
+    <meta name="twitter:title" content="XcryptoCap - Listez votre token dès aujourd'hui">
+    <meta name="twitter:description" content="Rejoignez l'avenir du référencement de crypto-monnaies avec XcryptoCap.">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -65,10 +65,35 @@
             background: #0f3460;
             color: white;
         }
+        .crypto-card a { /* Styling for links within crypto cards */
+            color: #e94560; /* Pink color for links */
+            text-decoration: none;
+        }
+        .crypto-card a:hover {
+            text-decoration: underline;
+        }
+        .admin-login {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #16213e;
+            border-radius: 10px;
+        }
+        .admin-login input, .admin-login button {
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        .admin-login button {
+            background: #e94560;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <h1>XcryptoCap - The Leading Crypto Listing Platform</h1>
+    <h1>XcryptoCap - La plateforme de référencement crypto</h1>
     <div id="google_translate_element"></div>
     <script>
         function googleTranslateElementInit() {
@@ -76,63 +101,130 @@
         }
     </script>
     
-    <h2>Listed Tokens</h2>
+    <h2>Tokens listés</h2>
     <div class="crypto-container" id="crypto-list"></div>
 
-    <h2>Popular Cryptocurrencies</h2>
-    <div class="crypto-container" id="crypto-prices"></div>
+    <h2>Crypto-monnaies populaires</h2>
+    <div class="crypto-container" id="crypto-prices">
+        </div>
     
     <h2>StartarBronze (STRB)</h2>
     <div class="crypto-container">
         <div class="crypto-card">
             <img src="https://tokeninsight.com/cdn-cgi/image/width=140,height=140,format=webp,quality=100,fit=cover/https://s2.tokeninsight.com/static/coins/img/STRB.png" alt="StartarBronze">
             <h3>StartarBronze (STRB)</h3>
-            <p><a href="https://bscscan.com/token/0x550a5e9c90cc238dd1afd88a0680b4feeb5f8dd6" target="_blank">Smart Contract URL</a></p>
-            <p>Price: <span id="strb-price">0.00000059</span></p>
+            <p><a href="https://bscscan.com/token/0x550a5e9c90cc238dd1afd88a0680b4feeb5f8dd6" target="_blank">URL du contrat intelligent</a></p>
+            <p>Prix: <span id="strb-price">0.00000059</span></p>
+            <p><a href="https://www.metamask.io/" target="_blank">MetaMask</a> | <a href="https://trustwallet.com/" target="_blank">TrustWallet</a> | <a href="https://bscscan.com/" target="_blank">BscScan</a></p>
+        </div>
+        <div class="crypto-card">
+            <img src="https://www.cryptocompare.com/media/37835/btc.png" alt="Bitcoin">
+            <h3>Bitcoin (BTC)</h3>
+            <p>Prix: <span id="btc-price">29,000</span></p>
+            <p><a href="https://www.metamask.io/" target="_blank">MetaMask</a> | <a href="https://trustwallet.com/" target="_blank">TrustWallet</a> | <a href="https://www.blockchain.com/" target="_blank">Blockchain.com</a></p>
+        </div>
+        <div class="crypto-card">
+            <img src="https://assets.coingecko.com/coins/images/279/large/solana.png?1598179207" alt="Solana">
+            <h3>Solana (SOL)</h3>
+            <p>Prix: <span id="sol-price">25</span></p>
+            <p><a href="https://www.metamask.io/" target="_blank">MetaMask</a> | <a href="https://trustwallet.com/" target="_blank">TrustWallet</a> | <a href="https://solscan.io/" target="_blank">Solscan</a></p>
+        </div>
+        <div class="crypto-card">
+            <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png?1598179207" alt="Ethereum">
+            <h3>Ethereum (ETH)</h3>
+            <p>Prix: <span id="eth-price">1,700</span></p>
+            <p><a href="https://www.metamask.io/" target="_blank">MetaMask</a> | <a href="https://trustwallet.com/" target="_blank">TrustWallet</a> | <a href="https://etherscan.io/" target="_blank">Etherscan</a></p>
         </div>
     </div>
 
-    <h2>How to List Your Token</h2>
+    <h2>Comment lister votre token</h2>
     <div class="pricing-section">
-        <p>To list your token on XcryptoCap, please contact us at: <strong>notairebtc@yahoo.fr</strong></p>
-        <p>You will receive your <strong>XcryptoCap-Listing-Request-[Your Token Name]</strong> for submission.</p>
-        <p>All listed tokens will have their prices and market caps updated in real-time across major platforms like MetaMask, TrustWallet, BscScan, and Etherscan.</p>
-        <p>Pricing:</p>
+        <p>Pour lister votre token sur XcryptoCap, veuillez nous contacter à : <strong>notairebtc@yahoo.fr</strong></p>
+        <p>Vous recevrez votre <strong>XcryptoCap-Listing-Request-[Nom de votre token]</strong> pour soumission.</p>
+        <p>Tous les tokens listés verront leurs prix et capitalisations boursières mis à jour en temps réel sur les principales plateformes comme MetaMask, TrustWallet, BscScan et Etherscan.</p>
+        <p>Tarification:</p>
         <ul>
             <li>Ethereum: 50$ - 200$</li>
             <li>Binance Smart Chain (BSC): 10$ - 50$</li>
             <li>Polygon: 5$ - 30$</li>
             <li>Solana: 15$ - 100$</li>
             <li>Tron: 5$ - 30$</li>
-            <li>Other Blockchains: Contact us for a custom quote.</li>
+            <li>Autres blockchains: Contactez-nous pour un devis personnalisé.</li>
         </ul>
     </div>
 
     <footer>
         <p>Contact: notairebtc@yahoo.fr</p>
-        <p><a href="#" onclick="toggleAdminLogin()">Admin Login</a></p>
+        <p><a href="#" onclick="toggleAdminLogin()">Connexion Admin</a></p>
         <div class="admin-login" id="admin-login">
-            <input type="email" id="admin-email" placeholder="Admin Email">
-            <input type="password" id="admin-password" placeholder="Password">
-            <button onclick="adminLogin()">Login</button>
+            <input type="email" id="admin-email" placeholder="Email Admin">
+            <input type="password" id="admin-password" placeholder="Mot de passe">
+            <button onclick="adminLogin()">Se connecter</button>
         </div>
     </footer>
 
     <script>
+        function toggleAdminLogin() {
+            var adminLogin = document.getElementById("admin-login");
+            adminLogin.style.display = (adminLogin.style.display === "none" || adminLogin.style.display === "") ? "block" : "none";
+        }
         async function adminLogin() {
             const email = document.getElementById("admin-email").value;
             const password = document.getElementById("admin-password").value;
             try {
+                // Fetch admin credentials from .env (replace with your actual .env variables)
                 const response = await axios.post("/api/admin-login", { email, password });
                 if (response.data.success) {
                     window.location.href = "admin.html";
                 } else {
-                    alert("Invalid credentials");
+                    alert("Identifiants invalides");
                 }
             } catch (error) {
-                alert("Login failed. Please try again.");
+                alert("Connexion échouée. Veuillez réessayer.");
             }
         }
+
+        // Fetch and display prices for STRB, BTC, SOL, and ETH
+        async function fetchPrices() {
+            try {
+                // Fetch StartarBronze price (replace with your actual API)
+                const strbResponse = await axios.get('https://api.tokeninsight.com/api/v1/token/price?symbol=STRB&apikey=Pro006549'); // Use your TokenInsight API key
+                document.getElementById('strb-price').textContent = strbResponse.data.price;
+                
+                // Fetch Bitcoin price from CoinGecko
+                const btcResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
+                    params: {
+                        ids: 'bitcoin',
+                        vs_currencies: 'usd'
+                    }
+                });
+                document.getElementById('btc-price').textContent = btcResponse.data.bitcoin.usd;
+
+                // Fetch Solana price from CoinGecko
+                const solResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
+                    params: {
+                        ids: 'solana',
+                        vs_currencies: 'usd'
+                    }
+                });
+                document.getElementById('sol-price').textContent = solResponse.data.solana.usd;
+
+                // Fetch Ethereum price from CoinGecko
+                const ethResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
+                    params: {
+                        ids: 'ethereum',
+                        vs_currencies: 'usd'
+                    }
+                });
+                document.getElementById('eth-price').textContent = ethResponse.data.ethereum.usd;
+            } catch (error) {
+                console.error('Erreur lors de la récupération des prix:', error);
+            }
+        }
+
+        // Call fetchPrices function when the page loads
+        fetchPrices();
+        setInterval(fetchPrices, 60000); // Update every 60 seconds
     </script>
 </body>
 </html>
