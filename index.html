@@ -149,13 +149,13 @@
         <div class="crypto-card">
             <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="Bitcoin">
             <h3>Bitcoin (BTC)</h3>
-            <p>Price: <span id="btc-price">29,000</span></p>
+            <p>Price: <span id="btc-price"></span></p>
             <p><a href="https://www.metamask.io/" target="_blank">MetaMask</a> | <a href="https://trustwallet.com/" target="_blank">TrustWallet</a> | <a href="https://www.blockchain.com/" target="_blank">Blockchain.com</a></p>
         </div>
         <div class="crypto-card">
             <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/5426.png" alt="Solana">
             <h3>Solana (SOL)</h3>
-            <p>Price: <span id="sol-price">25</span></p>
+            <p>Price: <span id="sol-price"></span></p>
             <p><a href="https://www.metamask.io/" target="_blank">MetaMask</a> | <a href="https://trustwallet.com/" target="_blank">TrustWallet</a> | <a href="https://solscan.io/" target="_blank">Solscan</a></p>
         </div>
     </div>
@@ -175,7 +175,7 @@
         <div class="crypto-card">
             <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png?1598179207" alt="Ethereum">
             <h3>Ethereum (ETH)</h3>
-            <p>Price: <span id="eth-price">1,700</span></p>
+            <p>Price: <span id="eth-price"></span></p>
             <p><a href="https://www.metamask.io/" target="_blank">MetaMask</a> | <a href="https://trustwallet.com/" target="_blank">TrustWallet</a> | <a href="https://etherscan.io/" target="_blank">Etherscan</a></p>
         </div>
     </div>
@@ -285,10 +285,9 @@
         // Display price for StartarBronze using TokenInsight API
         fetchAndDisplayPrice('STRB', 'Pro006549', 'strb-price');
 
-        // You can add similar functions for other tokens
-        // fetchAndDisplayPrice('BTC', 'YOUR_API_KEY', 'btc-price'); // Use your CoinGecko API
-        // fetchAndDisplayPrice('SOL', 'YOUR_API_KEY', 'sol-price'); // Use your CoinGecko API
-        // fetchAndDisplayPrice('ETH', 'YOUR_API_KEY', 'eth-price'); // Use your CoinGecko API
+        // Fetch and display prices for BTC, SOL, and ETH from CoinGecko (using the same fetchPrices function)
+        fetchPrices(); 
+        setInterval(fetchPrices, 60000);
     </script>
 </body>
 </html>
