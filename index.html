@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XcryptoCap - The Leading Crypto Listing Platform</title>
-    <meta name="description" content="XcryptoCap is the ultimate platform for listing cryptocurrencies, providing real-time price updates, and seamless integration with MetaMask and TrustWallet.">
-    <meta name="keywords" content="crypto listing, XcryptoCap, cryptocurrency, token listing, MetaMask, TrustWallet, Bitcoin, Ethereum">
+    <title>XcryptoCap - La principale plateforme de listing crypto</title>
+    <meta name="description" content="XcryptoCap est la plateforme ultime pour lister des cryptomonnaies, fournir des mises à jour de prix en temps réel et une intégration transparente avec MetaMask et TrustWallet.">
+    <meta name="keywords" content="listing crypto, XcryptoCap, cryptomonnaie, listing de tokens, MetaMask, TrustWallet, Bitcoin, Ethereum">
     <meta name="author" content="XcryptoCap">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
@@ -31,7 +31,7 @@
             border-radius: 10px;
             width: 200px;
         }
-        img {
+        .crypto-card img {
             width: 50px;
             height: 50px;
         }
@@ -68,72 +68,70 @@
     </style>
 </head>
 <body>
-    <h1>XcryptoCap - The Leading Crypto Listing Platform</h1>
+    <h1>XcryptoCap - La principale plateforme de listing crypto</h1>
     <div id="google_translate_element"></div>
     <script>
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            new google.translate.TranslateElement({pageLanguage: 'fr'}, 'google_translate_element');
         }
     </script>
-    
-    <h2>Listed Tokens</h2>
+
+    <!-- Section des principales cryptomonnaies avec images -->
+    <h2>Cryptomonnaies Populaires</h2>
+    <div class="crypto-container">
+        <!-- Bitcoin -->
+        <div class="crypto-card">
+            <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="Bitcoin">
+            <h3>Bitcoin (BTC)</h3>
+        </div>
+        <!-- Ethereum -->
+        <div class="crypto-card">
+            <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png" alt="Ethereum">
+            <h3>Ethereum (ETH)</h3>
+        </div>
+        <!-- Tether -->
+        <div class="crypto-card">
+            <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png" alt="Tether">
+            <h3>Tether (USDT)</h3>
+        </div>
+        <!-- Binance Coin -->
+        <div class="crypto-card">
+            <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png" alt="Binance Coin">
+            <h3>Binance Coin (BNB)</h3>
+        </div>
+        <!-- USD Coin -->
+        <div class="crypto-card">
+            <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png" alt="USD Coin">
+            <h3>USD Coin (USDC)</h3>
+        </div>
+    </div>
+
+    <h2>Tokens Listés</h2>
     <div class="crypto-container" id="crypto-list"></div>
 
-    <h2>List Your Token</h2>
+    <h2>Listez Votre Token</h2>
     <div class="token-form">
-        <input type="text" id="token-name" placeholder="Token Name">
-        <input type="text" id="token-symbol" placeholder="Symbol">
-        <input type="text" id="token-address" placeholder="Contract Address">
-        <input type="text" id="token-logo" placeholder="Logo URL">
-        <button onclick="payAndListToken()">Pay Gas & List Token</button>
+        <input type="text" id="token-name" placeholder="Nom du Token">
+        <input type="text" id="token-symbol" placeholder="Symbole">
+        <input type="text" id="token-address" placeholder="Adresse du Contrat">
+        <input type="text" id="token-logo" placeholder="URL du Logo">
+        <button onclick="payAndListToken()">Payer les Frais & Lister le Token</button>
     </div>
-    
-    <h2>Pricing</h2>
+
+    <h2>StartarBronze (STRB)</h2>
+    <div class="crypto-card">
+        <img src="https://tokeninsight.com/cdn-cgi/image/width=140,height=140,format=webp,quality=100,fit=cover/https://s2.tokeninsight.com/static/coins/img/STRB.png" alt="StartarBronze">
+        <h3>StartarBronze (STRB)</h3>
+        <p>Contrat : 0x550a5e9c90cC238Dd1AFD88A0680b4fEeB5F8Dd6</p>
+        <p>Prix : <span id="strb-price">Chargement...</span></p>
+    </div>
+
+    <h2>Tarification</h2>
     <div class="pricing-section">
-        <p>Ethereum: 50$ - 200$</p>
-        <p>Binance Smart Chain (BSC): 10$ - 50$</p>
-        <p>Polygon / Arbitrum: 5$ - 30$</p>
-        <p>Payment Addresses:</p>
-        <p>Bitcoin: bc1qdq90qlwrueaq23jxndmg63yfda0m3z52y4j759</p>
-        <p>Tron: TFCroreBmR1HdX2SzwRUULjBvjgbFMJxbR</p>
-        <p>Ethereum/BNB/Polygon: 0xD13674e9342D3DC3b904a56BCf5F28D8Ce1A3474</p>
-    </div>
-
-    <h2>FAQ</h2>
-    <div class="faq-section">
-        <p><strong>How can I list my token?</strong> Simply fill out the form above and submit payment.</p>
-        <p><strong>How long does listing take?</strong> Your token will be listed automatically within minutes.</p>
-        <p><strong>Is my token data secure?</strong> Yes, we use advanced protection against hacking and DDoS attacks.</p>
-    </div>
-
-    <footer>
-        <p>Contact: notairebtc@yahoo.fr</p>
-        <p><a href="#" onclick="toggleAdminLogin()">Admin Login</a></p>
-        <div class="admin-login" id="admin-login">
-            <input type="email" id="admin-email" placeholder="Admin Email">
-            <input type="password" id="admin-password" placeholder="Password">
-            <button onclick="adminLogin()">Login</button>
-        </div>
-    </footer>
-
-    <script>
-        function toggleAdminLogin() {
-            var adminLogin = document.getElementById("admin-login");
-            adminLogin.style.display = (adminLogin.style.display === "none" || adminLogin.style.display === "") ? "block" : "none";
-        }
-
-        function adminLogin() {
-            const email = document.getElementById("admin-email").value;
-            const password = document.getElementById("admin-password").value;
-            if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-                window.location.href = "admin.html";
-            } else {
-                alert("Invalid credentials");
-            }
-        }
-
-        fetchCryptoData();
-        setInterval(fetchCryptoData, 60000);
-    </script>
-</body>
-</html>
+        <p>Ethereum : 50$ - 200$</p>
+        <p>Binance Smart Chain (BSC) : 10$ - 50$</p>
+        <p>Polygon / Arbitrum : 5$ - 30$</p>
+        <p>Adresses de Paiement :</p>
+        <p>Bitcoin : bc1qdq90qlwrueaq23jxndmg63yf
+::contentReference[oaicite:0]{index=0}
+ 
