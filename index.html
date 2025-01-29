@@ -76,9 +76,6 @@
         }
     </script>
     
-    <h2>Top 5 Cryptocurrencies</h2>
-    <div class="crypto-container" id="top-crypto-list"></div>
-    
     <h2>Listed Tokens</h2>
     <div class="crypto-container" id="crypto-list"></div>
 
@@ -89,6 +86,24 @@
         <input type="text" id="token-address" placeholder="Contract Address">
         <input type="text" id="token-logo" placeholder="Logo URL">
         <button onclick="payAndListToken()">Pay Gas & List Token</button>
+    </div>
+    
+    <h2>Pricing</h2>
+    <div class="pricing-section">
+        <p>Ethereum: 50$ - 200$</p>
+        <p>Binance Smart Chain (BSC): 10$ - 50$</p>
+        <p>Polygon / Arbitrum: 5$ - 30$</p>
+        <p>Payment Addresses:</p>
+        <p>Bitcoin: bc1qdq90qlwrueaq23jxndmg63yfda0m3z52y4j759</p>
+        <p>Tron: TFCroreBmR1HdX2SzwRUULjBvjgbFMJxbR</p>
+        <p>Ethereum/BNB/Polygon: 0xD13674e9342D3DC3b904a56BCf5F28D8Ce1A3474</p>
+    </div>
+
+    <h2>FAQ</h2>
+    <div class="faq-section">
+        <p><strong>How can I list my token?</strong> Simply fill out the form above and submit payment.</p>
+        <p><strong>How long does listing take?</strong> Your token will be listed automatically within minutes.</p>
+        <p><strong>Is my token data secure?</strong> Yes, we use advanced protection against hacking and DDoS attacks.</p>
     </div>
 
     <footer>
@@ -102,35 +117,6 @@
     </footer>
 
     <script>
-        async function fetchCryptoData() {
-            try {
-                const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
-                    params: {
-                        vs_currency: 'usd',
-                        order: 'market_cap_desc',
-                        per_page: 5,
-                        page: 1,
-                        sparkline: false
-                    }
-                });
-                const topCryptoList = document.getElementById('top-crypto-list');
-                topCryptoList.innerHTML = '';
-                response.data.forEach(coin => {
-                    const card = document.createElement('div');
-                    card.className = 'crypto-card';
-                    card.innerHTML = `
-                        <img src="${coin.image}" alt="${coin.name}">
-                        <h3>${coin.name} (${coin.symbol.toUpperCase()})</h3>
-                        <p>Price: $${coin.current_price.toLocaleString()}</p>
-                        <p>Market Cap: $${coin.market_cap.toLocaleString()}</p>
-                    `;
-                    topCryptoList.appendChild(card);
-                });
-            } catch (error) {
-                console.error('Error loading cryptos', error);
-            }
-        }
-
         function toggleAdminLogin() {
             var adminLogin = document.getElementById("admin-login");
             adminLogin.style.display = (adminLogin.style.display === "none" || adminLogin.style.display === "") ? "block" : "none";
@@ -139,7 +125,7 @@
         function adminLogin() {
             const email = document.getElementById("admin-email").value;
             const password = document.getElementById("admin-password").value;
-            if (email === "admin@example.com" && password === "admin123") {
+            if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
                 window.location.href = "admin.html";
             } else {
                 alert("Invalid credentials");
