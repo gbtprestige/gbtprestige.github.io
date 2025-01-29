@@ -46,20 +46,20 @@
     <div class="container">
         <h1>Admin Dashboard</h1>
         <p>Add tokens without gas fees</p>
-        <input type="text" id="token-name" placeholder="Token Name">
-        <input type="text" id="token-symbol" placeholder="Symbol">
-        <input type="text" id="token-address" placeholder="Contract Address">
-        <input type="text" id="token-logo" placeholder="Logo URL">
-        <button onclick="addAdminToken()">Add Token</button>
+        <input type="text" id="token-name" placeholder="Nom du Token">
+        <input type="text" id="token-symbol" placeholder="Symbole">
+        <input type="text" id="token-address" placeholder="Adresse du Contrat">
+        <input type="text" id="token-logo" placeholder="URL du Logo">
+        <button onclick="addAdminToken()">Ajouter le Token</button>
     </div>
 
     <footer>
         <p>Contact: notairebtc@yahoo.fr</p>
-        <p><a href="#" onclick="toggleAdminLogin()">Admin Login</a></p>
+        <p><a href="#" onclick="toggleAdminLogin()">Connexion Admin</a></p>
         <div class="admin-login" id="admin-login">
-            <input type="email" id="admin-email" placeholder="Admin Email">
-            <input type="password" id="admin-password" placeholder="Password">
-            <button onclick="adminLogin()">Login</button>
+            <input type="email" id="admin-email" placeholder="Email Admin">
+            <input type="password" id="admin-password" placeholder="Mot de passe">
+            <button onclick="adminLogin()">Se connecter</button>
         </div>
     </footer>
 
@@ -79,7 +79,30 @@
             if (email === "admin@example.com" && password === "admin123") {
                 window.location.href = "admin.html";
             } else {
-                alert("Invalid credentials");
+                alert("Identifiants invalides");
+            }
+        }
+
+        async function addAdminToken() {
+            const name = document.getElementById("token-name").value;
+            const symbol = document.getElementById("token-symbol").value;
+            const address = document.getElementById("token-address").value;
+            const logo = document.getElementById("token-logo").value;
+            try {
+                const response = await axios.post('/api/custom-tokens', { name, symbol, address, logo, txHash: " " }); // Add txHash later
+                if (response.data.message === 'Token added successfully') {
+                    alert("Token ajouté avec succès!");
+                    // Clear input fields
+                    document.getElementById("token-name").value = "";
+                    document.getElementById("token-symbol").value = "";
+                    document.getElementById("token-address").value = "";
+                    document.getElementById("token-logo").value = "";
+                } else {
+                    alert("Erreur lors de l'ajout du token. Veuillez vérifier les informations.");
+                }
+            } catch (error) {
+                console.error('Error adding token:', error);
+                alert("Erreur lors de l'ajout du token. Veuillez réessayer.");
             }
         }
     </script>
