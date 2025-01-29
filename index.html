@@ -119,38 +119,24 @@
     </footer>
 
     <script>
-        async function fetchCryptoData() {
-            try {
-                const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
-                    params: {
-                        vs_currency: 'usd',
-                        order: 'market_cap_desc',
-                        per_page: 5,
-                        page: 1,
-                        sparkline: false
-                    }
-                });
-                
-                const cryptoList = document.getElementById('crypto-list');
-                cryptoList.innerHTML = '';
-                
-                response.data.forEach(coin => {
-                    const card = document.createElement('div');
-                    card.className = 'crypto-card';
-                    card.innerHTML = `
-                        <img src="${coin.image}" alt="${coin.name}">
-                        <h3>${coin.name} (${coin.symbol.toUpperCase()})</h3>
-                        <p>Price: $${coin.current_price.toLocaleString()}</p>
-                        <p>Market Cap: $${coin.market_cap.toLocaleString()}</p>
-                    `;
-                    cryptoList.appendChild(card);
-                });
-            } catch (error) {
-                console.error('Error loading cryptos', error);
+        function toggleAdminLogin() {
+            var adminLogin = document.getElementById("admin-login");
+            if (adminLogin.style.display === "none" || adminLogin.style.display === "") {
+                adminLogin.style.display = "block";
+            } else {
+                adminLogin.style.display = "none";
             }
         }
-        fetchCryptoData();
-        setInterval(fetchCryptoData, 60000);
+
+        function adminLogin() {
+            const email = document.getElementById("admin-email").value;
+            const password = document.getElementById("admin-password").value;
+            if (email === "admin@example.com" && password === "admin123") {
+                window.location.href = "admin.html";
+            } else {
+                alert("Invalid credentials");
+            }
+        }
     </script>
 </body>
 </html>
