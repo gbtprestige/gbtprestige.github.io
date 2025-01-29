@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XcryptoCap - The Leading Crypto Listing Platform</title>
-    <meta name="description" content="XcryptoCap is the ultimate platform for listing cryptocurrencies, providing real-time price updates, and seamless integration with MetaMask and TrustWallet.">
-    <meta name="keywords" content="crypto listing, XcryptoCap, cryptocurrency, token listing, MetaMask, TrustWallet, Bitcoin, Ethereum">
+    <meta name="description" content="XcryptoCap is the best platform to list your cryptocurrency, providing real-time price updates and seamless integration with MetaMask and TrustWallet.">
+    <meta name="keywords" content="crypto listing, cryptocurrency, token listing, MetaMask, TrustWallet, Bitcoin, Ethereum, Binance, BscScan, Etherscan, trading, swapping">
     <meta name="author" content="XcryptoCap">
+    <meta property="og:title" content="XcryptoCap - The Leading Crypto Listing Platform">
+    <meta property="og:description" content="List your token and gain visibility. Real-time price updates, integration with major wallets, and direct visibility on Etherscan and BscScan.">
+    <meta property="og:image" content="https://xcryptocap.com/logo.png">
+    <meta property="og:url" content="https://xcryptocap.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="XcryptoCap - List Your Token Today">
+    <meta name="twitter:description" content="Join the future of cryptocurrency listing with XcryptoCap.">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -58,13 +65,6 @@
             background: #0f3460;
             color: white;
         }
-        .admin-login {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            background: #16213e;
-            border-radius: 10px;
-        }
     </style>
 </head>
 <body>
@@ -80,13 +80,10 @@
     <div class="crypto-container" id="crypto-list"></div>
 
     <h2>Popular Cryptocurrencies</h2>
+    <div class="crypto-container" id="crypto-prices"></div>
+    
+    <h2>StartarBronze (STRB)</h2>
     <div class="crypto-container">
-        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="Bitcoin"><h3>Bitcoin (BTC)</h3></div>
-        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png" alt="Ethereum"><h3>Ethereum (ETH)</h3></div>
-        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png" alt="BNB"><h3>Binance Coin (BNB)</h3></div>
-        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/5426.png" alt="Solana"><h3>Solana (SOL)</h3></div>
-        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/3890.png" alt="Polygon"><h3>Polygon (MATIC)</h3></div>
-        <div class="crypto-card"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png" alt="Tron"><h3>Tron (TRX)</h3></div>
         <div class="crypto-card">
             <img src="https://tokeninsight.com/cdn-cgi/image/width=140,height=140,format=webp,quality=100,fit=cover/https://s2.tokeninsight.com/static/coins/img/STRB.png" alt="StartarBronze">
             <h3>StartarBronze (STRB)</h3>
@@ -99,6 +96,7 @@
     <div class="pricing-section">
         <p>To list your token on XcryptoCap, please contact us at: <strong>notairebtc@yahoo.fr</strong></p>
         <p>You will receive your <strong>XcryptoCap-Listing-Request-[Your Token Name]</strong> for submission.</p>
+        <p>All listed tokens will have their prices and market caps updated in real-time across major platforms like MetaMask, TrustWallet, BscScan, and Etherscan.</p>
         <p>Pricing:</p>
         <ul>
             <li>Ethereum: 50$ - 200$</li>
@@ -124,11 +122,15 @@
         async function adminLogin() {
             const email = document.getElementById("admin-email").value;
             const password = document.getElementById("admin-password").value;
-
-            if (email === "nzababouesse@gmail.com" && password === "11041989945600") {
-                window.location.href = "admin.html";
-            } else {
-                alert("Invalid credentials");
+            try {
+                const response = await axios.post("/api/admin-login", { email, password });
+                if (response.data.success) {
+                    window.location.href = "admin.html";
+                } else {
+                    alert("Invalid credentials");
+                }
+            } catch (error) {
+                alert("Login failed. Please try again.");
             }
         }
     </script>
