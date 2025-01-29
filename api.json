@@ -1,0 +1,96 @@
+const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
+const fs = require('fs');
+require('dotenv').config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+
+const TOKEN_STORAGE = 'tokens.json';
+let customTokens = [];
+
+// Charger les tokens enregistrés
+if (fs.existsSync(TOKEN_STORAGE)) {
+    customTokens = JSON.parse(fs.readFileSync(TOKEN_STORAGE));
+}
+
+// Route pour récupérer le top 5 cryptos
+app.get('/api/top-cryptos', async (req, res) => {
+    try {
+        const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+            params: {
+                vs_currency: 'usd',
+                order: 'market_cap_desc',
+                per_page: 5,
+                page: 1,
+                sparkline: false
+            }
+        });
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching top cryptos' });
+    }
+});
+
+// Route pour récupérer les tokens personnalisés avec prix et market cap
+app.get('/api/custom-tokens', async (req, res) => {
+    try {
+        const updatedTokens = await Promise.all(customTokens.map(async (token) => {
+            try {
+                const response = await axios.get(`https://api.coingecko.com/api/v3/simple/token_price/ethereum`, {
+                    params: {
+                        contract_addresses: token.address,
+                        vs_currencies: 'usd',
+                        include_market_cap: true
+                    }
+                });
+                const priceData = response.data[token.address.toLowerCase()] || {};
+                return {
+                    ...token,
+                    price: priceData.usd || 'N/A',
+                    market_cap: priceData.usd_market_cap || 'N/A'
+                };
+            } catch (err) {
+                return { ...token, price: 'N/A', market_cap: 'N/A' };
+            }
+        }));
+        res.json(updatedTokens);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching token data' });
+    }
+});
+
+// Route pour ajouter un token après paiement des frais de gaz
+app.post('/api/custom-tokens', async (req, res) => {
+    const { name, symbol, address, logo, txHash } = req.body;
+    
+    if (!name || !symbol || !address || !logo || !txHash) {
+        return res.status(400).json({ error: 'All fields are required, including transaction hash' });
+    }
+    
+    // Vérifier la transaction sur la blockchain (pseudo-code)
+    const isValidTransaction = await verifyTransaction(txHash);
+    if (!isValidTransaction) {
+        return res.status(403).json({ error: 'Invalid or unconfirmed transaction' });
+    }
+
+    const newToken = { name, symbol, address, logo };
+    customTokens.push(newToken);
+    fs.writeFileSync(TOKEN_STORAGE, JSON.stringify(customTokens, null, 2));
+    
+    res.status(201).json({ message: 'Token added successfully', token: newToken });
+});
+
+// Fonction de vérification des transactions (à connecter à un node blockchain)
+async function verifyTransaction(txHash) {
+    // Intégration future avec Web3.js ou ethers.js
+    return true; // Simulé pour l'instant
+}
+
+app.listen(PORT, () => {
+    console.log(`XcryptoCap API is running on port ${PORT}`);
+});

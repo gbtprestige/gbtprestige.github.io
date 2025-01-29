@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XcryptoCap Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #16213e;
+            border-radius: 10px;
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            background: #e94560;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <p>Add tokens without gas fees</p>
+        <input type="text" id="token-name" placeholder="Token Name">
+        <input type="text" id="token-symbol" placeholder="Symbol">
+        <input type="text" id="token-address" placeholder="Contract Address">
+        <input type="text" id="token-logo" placeholder="Logo URL">
+        <button onclick="addAdminToken()">Add Token</button>
+    </div>
+
+    <div class="container">
+        <h2>List Your Token (With Gas Payment)</h2>
+        <input type="text" id="user-token-name" placeholder="Token Name">
+        <input type="text" id="user-token-symbol" placeholder="Symbol">
+        <input type="text" id="user-token-address" placeholder="Contract Address">
+        <input type="text" id="user-token-logo" placeholder="Logo URL">
+        <button onclick="payAndListToken()">Pay Gas & List Token</button>
+    </div>
+
+    <div class="container">
+        <h2>Listed Tokens</h2>
+        <div id="token-list"></div>
+    </div>
+
+    <script>
+        async function addAdminToken() {
+            const name = document.getElementById('token-name').value;
+            const symbol = document.getElementById('token-symbol').value;
+            const address = document.getElementById('token-address').value;
+            const logo = document.getElementById('token-logo').value;
+            const apiKey = "YOUR_ADMIN_API_KEY";
+
+            if (!name || !symbol || !address || !logo) {
+                alert("All fields are required!");
+                return;
+            }
+
+            try {
+                const response = await axios.post("https://your-api-url.com/api/custom-tokens", {
+                    apiKey,
+                    name,
+                    symbol,
+                    address,
+                    logo
+                });
+                alert(response.data.message);
+                fetchTokens();
+            } catch (error) {
+                alert("Error adding token: " + error.response.data.error);
+            }
+        }
+
+        async function payAndListToken() {
+            if (typeof window.ethereum !== 'undefined') {
+                const web3 = new Web3(window.ethereum);
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const accounts = await web3.eth.getAccounts();
+                const sender = accounts[0];
+                const amount = web3.utils.toWei('0.01', 'ether'); // Example gas fee
+                
+                try {
+                    const tx = await web3.eth.sendTransaction({
+                        from: sender,
+                        to: "0xD13674e9342D3DC3b904a56BCf5F28D8Ce1A3474", // Payment address
+                        value: amount
+                    });
+                    
+                    const name = document.getElementById('user-token-name').value;
+                    const symbol = document.getElementById('user-token-symbol').value;
+                    const address = document.getElementById('user-token-address').value;
+                    const logo = document.getElementById('user-token-logo').value;
+                    
+                    if (!name || !symbol || !address || !logo) {
+                        alert("All fields are required!");
+                        return;
+                    }
+                    
+                    const response = await axios.post("https://your-api-url.com/api/custom-tokens", {
+                        name, symbol, address, logo, txHash: tx.transactionHash
+                    });
+                    alert(response.data.message);
+                    fetchTokens();
+                } catch (error) {
+                    alert("Transaction failed: " + error.message);
+                }
+            } else {
+                alert("Please install MetaMask or TrustWallet");
+            }
+        }
+
+        async function fetchTokens() {
+            try {
+                const response = await axios.get("https://your-api-url.com/api/custom-tokens");
+                const tokenList = document.getElementById("token-list");
+                tokenList.innerHTML = "";
+                response.data.forEach(token => {
+                    const div = document.createElement("div");
+                    div.innerHTML = `
+                        <img src="${token.logo}" width="50">
+                        <p><strong>${token.name} (${token.symbol})</strong></p>
+                        <p>Price: $${token.price || 'N/A'}</p>
+                        <p>Market Cap: $${token.market_cap || 'N/A'}</p>
+                    `;
+                    tokenList.appendChild(div);
+                });
+            } catch (error) {
+                console.error("Error fetching tokens", error);
+            }
+        }
+        fetchTokens();
+        setInterval(fetchTokens, 60000);
+    </script>
+</body>
+</html>
