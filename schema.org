@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "XcryptoCap - The Crypto Listing Platform",
+  "url": "https://xcryptocap.r-b-a.fr",
+  "description": "XcryptoCap is the leading platform for listing your cryptocurrency, providing real-time price updates and seamless integration with MetaMask and TrustWallet.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://xcryptocap.r-b-a.fr/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://xcryptocap.r-b-a.fr"
+  }
+}
