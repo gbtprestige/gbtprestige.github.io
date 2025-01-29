@@ -160,11 +160,11 @@
         </div>
     </div>
 
-    <h2>StartarBronze (STRB)</h2>
+    <h2></h2>
     <div class="crypto-container">
         <div class="crypto-card">
             <img src="https://tokeninsight.com/cdn-cgi/image/width=140,height=140,format=webp,quality=100,fit=cover/https://s2.tokeninsight.com/static/coins/img/STRB.png" alt="StartarBronze">
-            <h3>StartarBronze (STRB)</h3>
+            <h3></h3>
             <p><a href="https://bscscan.com/token/0x550a5e9c90cc238dd1afd88a0680b4feeb5f8dd6" target="_blank">Smart Contract URL</a></p>
             <p>Price: <span id="strb-price">0.00000059</span></p>
             <script>
@@ -273,7 +273,7 @@
         // Replace 'YOUR_API_KEY' with your actual TokenInsight API key
         async function fetchAndDisplayPrice(symbol, apiKey, priceElementId) {
             try {
-                const priceData = await axios.get(`https://api.tokeninsight.com/api/v1/token/price?symbol=${symbol}&apikey=${apiKey}`);
+                const priceData = await axios.get(https://api.tokeninsight.com/api/v1/token/price?symbol=${symbol}&apikey=${apiKey});
                 document.getElementById(priceElementId).textContent = priceData.data.price;
             } catch (error) {
                 console.error('Error fetching price data:', error);
@@ -291,4 +291,4 @@
         // fetchAndDisplayPrice('ETH', 'YOUR_API_KEY', 'eth-price'); // Use your CoinGecko API
     </script>
 </body>
-</html>  
+</html>
