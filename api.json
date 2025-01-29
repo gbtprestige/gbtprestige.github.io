@@ -48,6 +48,16 @@ app.post('/api/custom-tokens', async (req, res) => {
     res.status(201).json({ message: 'Token added successfully', token: newToken });
 });
 
+app.post('/api/admin-login', (req, res) => {
+    const { email, password } = req.body;
+    
+    if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+        res.json({ success: true, message: 'Login successful' });
+    } else {
+        res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`XcryptoCap API is running on port ${PORT}`);
 });
