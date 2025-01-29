@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const fs = require('fs');
-require('dotenv').config();
+const Web3 = require('web3');
+require('dotenv').config(); // Chargement des variables d'environnement
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,53 +12,74 @@ const TOKEN_STORAGE = 'tokens.json';
 app.use(cors());
 app.use(express.json());
 
+// Initialisation Web3 (utilisez votre propre ID de projet Infura)
+const web3 = new Web3('https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID'); 
+
 let customTokens = [];
 if (fs.existsSync(TOKEN_STORAGE)) {
-    customTokens = JSON.parse(fs.readFileSync(TOKEN_STORAGE));
+  customTokens = JSON.parse(fs.readFileSync(TOKEN_STORAGE));
 }
 
+// Endpoint pour les meilleures crypto-monnaies 
 app.get('/api/top-cryptos', async (req, res) => {
-    try {
-        const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
-            params: {
-                vs_currency: 'usd',
-                order: 'market_cap_desc',
-                per_page: 5,
-                page: 1,
-                sparkline: false
-            }
-        });
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ error: 'Error fetching top cryptos' });
-    }
+  try {
+    const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+      params: {
+        vs_currency: 'usd',
+        order: 'market_cap_desc',
+        per_page: 5,
+        page: 1,
+        sparkline: false
+      }
+    });
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching top cryptos' });
+  }
 });
 
+// Endpoint pour les tokens personnalisés 
 app.get('/api/custom-tokens', (req, res) => {
-    res.json(customTokens);
+  res.json(customTokens);
 });
 
 app.post('/api/custom-tokens', async (req, res) => {
-    const { name, symbol, address, logo, txHash } = req.body;
-    if (!name || !symbol || !address || !logo || !txHash) {
-        return res.status(400).json({ error: 'All fields are required, including transaction hash' });
-    }
-    const newToken = { name, symbol, address, logo };
-    customTokens.push(newToken);
-    fs.writeFileSync(TOKEN_STORAGE, JSON.stringify(customTokens, null, 2));
-    res.status(201).json({ message: 'Token added successfully', token: newToken });
+  const { name, symbol, address, logo, txHash } = req.body;
+  if (!name || !symbol || !address || !logo || !txHash) {
+    return res.status(400).json({ error: 'All fields are required, including transaction hash' });
+  }
+  const newToken = { name, symbol, address, logo };
+  customTokens.push(newToken);
+  fs.writeFileSync(TOKEN_STORAGE, JSON.stringify(customTokens, null, 2));
+  res.status(201).json({ message: 'Token added successfully', token: newToken });
 });
 
-app.post('/api/admin-login', (req, res) => {
-    const { email, password } = req.body;
-    
-    if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-        res.json({ success: true, message: 'Login successful' });
+// Endpoint pour la validation du contrat intelligent
+app.post('/api/validate-contract', async (req, res) => {
+  const { contractAddress } = req.body;
+  try {
+    const code = await web3.eth.getCode(contractAddress);
+    if (code !== '0x') {
+      res.json({ valid: true, message: 'Contract address is valid' });
     } else {
-        res.status(401).json({ success: false, message: 'Invalid credentials' });
+      res.json({ valid: false, message: 'Contract address is invalid' });
     }
+  } catch (error) {
+    res.status(500).json({ valid: false, message: 'Error validating contract address' });
+  }
+});
+
+// Endpoint pour l'authentification de l'administrateur 
+app.post('/api/admin-login', (req, res) => {
+  const { email, password } = req.body;
+
+  if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+    res.json({ success: true, message: 'Login successful' });
+  } else {
+    res.status(401).json({ success: false, message: 'Invalid credentials' });
+  }
 });
 
 app.listen(PORT, () => {
-    console.log(`XcryptoCap API is running on port ${PORT}`);
+  console.log(`XcryptoCap API is running on port ${PORT}`);
 });
