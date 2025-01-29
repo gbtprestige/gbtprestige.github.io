@@ -94,13 +94,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #0f3460;
+            background-color: #000000; /* Fond noir */
             padding: 10px;
             border-radius: 10px;
             margin-bottom: 20px;
         }
         .header-container img {
-            max-width: 300px; /* Agrandit le logo */
+            max-width: 960px; /* Agrandit le logo x8 */
             height: auto;
         }
     </style>
@@ -144,8 +144,9 @@
             <img src="https://tokeninsight.com/cdn-cgi/image/width=140,height=140,format=webp,quality=100,fit=cover/https://s2.tokeninsight.com/static/coins/img/STRB.png" alt="StartarBronze">
             <h3>StartarBronze (STRB)</h3>
             <p><a href="https://bscscan.com/token/0x550a5e9c90cc238dd1afd88a0680b4feeb5f8dd6" target="_blank">URL du contrat intelligent</a></p>
-            <p>Prix: <span id="strb-price">0.00000059</span></p> <script> 
-                document.getElementById('strb-price').textContent = '0.00000059';
+            <p>Prix: <span id="strb-price">0.00000059</span></p>
+            <script>
+                document.getElementById('strb-price').textContent = '0.00000059'; 
             </script>
             <p><a href="https://www.metamask.io/" target="_blank">MetaMask</a> | <a href="https://trustwallet.com/" target="_blank">TrustWallet</a> | <a href="https://bscscan.com/" target="_blank">BscScan</a></p>
         </div>
@@ -269,4 +270,3 @@
     </script>
 </body>
 </html>
-
