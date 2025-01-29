@@ -8,6 +8,7 @@
     <meta name="keywords" content="crypto listing, XcryptoCap, cryptocurrency, token listing, MetaMask, TrustWallet, Bitcoin, Ethereum">
     <meta name="author" content="XcryptoCap">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.3.1/sha.js"></script>
     <style>
@@ -87,7 +88,7 @@
         <input type="text" id="token-symbol" placeholder="Symbol">
         <input type="text" id="token-address" placeholder="Contract Address">
         <input type="text" id="token-logo" placeholder="Logo URL">
-        <button onclick="addCustomToken()">List Token</button>
+        <button onclick="payAndListToken()">Pay Gas & List Token</button>
     </div>
 
     <footer>
@@ -129,6 +130,22 @@
                 console.error('Error loading cryptos', error);
             }
         }
+
+        function toggleAdminLogin() {
+            var adminLogin = document.getElementById("admin-login");
+            adminLogin.style.display = (adminLogin.style.display === "none" || adminLogin.style.display === "") ? "block" : "none";
+        }
+
+        function adminLogin() {
+            const email = document.getElementById("admin-email").value;
+            const password = document.getElementById("admin-password").value;
+            if (email === "admin@example.com" && password === "admin123") {
+                window.location.href = "admin.html";
+            } else {
+                alert("Invalid credentials");
+            }
+        }
+
         fetchCryptoData();
         setInterval(fetchCryptoData, 60000);
     </script>
