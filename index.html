@@ -18,6 +18,23 @@
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.3.1/sha.js"></script>
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "XcryptoCap",
+      "url": "https://xcryptocap.r-b-a.fr",
+      "description": "La meilleure plateforme pour lister votre crypto-monnaie, offrant des mises à jour de prix en temps réel et une intégration transparente avec MetaMask et TrustWallet.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://xcryptocap.r-b-a.fr/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -100,14 +117,19 @@
             margin-bottom: 20px;
         }
         .header-container img {
-            max-width: 960px; /* Agrandit le logo x8 */
+            max-width: 800px; /* Agrandit le logo */
             height: auto;
+        }
+
+        /* Google Translate */
+        #google_translate_element {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="header-container">
-        <img src="xcryptocappng.png" alt="XcryptoCap Logo">
+        <img src="https://github.com/gbtprestige/gbtprestige.github.io/blob/main/xcryptocappng.png" alt="XcryptoCap Logo">
     </div>
 
     <script>
