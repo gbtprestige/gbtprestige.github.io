@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XcryptoCap - La plateforme de référencement crypto</title>
-    <meta name="description" content="XcryptoCap est la meilleure plateforme pour lister votre crypto-monnaie, offrant des mises à jour de prix en temps réel et une intégration transparente avec MetaMask et TrustWallet.">
-    <meta name="keywords" content="crypto listing, crypto-monnaie, token listing, MetaMask, TrustWallet, Bitcoin, Ethereum, Binance, BscScan, Etherscan, trading, échange">
-    <meta name="author" content="XcryptoCap">
-    <meta property="og:title" content="XcryptoCap - La plateforme de référencement crypto">
-    <meta property="og:description" content="Listez votre token et gagnez en visibilité. Mises à jour de prix en temps réel, intégration avec les principaux portefeuilles et visibilité directe sur Etherscan et BscScan.">
+    <title>XcryptoCap - The Leading Crypto Listing Platform</title>
+    <meta name="description" content="XcryptoCap is the ultimate platform for listing cryptocurrencies, providing real-time price updates, and seamless integration with MetaMask and TrustWallet.">
+    <meta name="keywords" content="crypto listing, XcryptoCap, cryptocurrency, token listing, MetaMask, TrustWallet, Bitcoin, Ethereum">
+    <meta name="author" content="Xcrypto Cap">
+    <meta property="og:title" content="XcryptoCap - The Leading Crypto Listing Platform">
+    <meta property="og:description" content="XcryptoCap is the ultimate platform for listing cryptocurrencies, providing real-time price updates, and seamless integration with MetaMask and TrustWallet.">
     <meta property="og:image" content="https://xcryptocap.com/logo.png">
     <meta property="og:url" content="https://xcryptocap.com">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="XcryptoCap - Listez votre token dès aujourd'hui">
-    <meta name="twitter:description" content="Rejoignez l'avenir du référencement de crypto-monnaies avec XcryptoCap.">
+    <meta name="twitter:title" content="XcryptoCap - List Your Token Today">
+    <meta name="twitter:description" content="Join the future of cryptocurrency listing with XcryptoCap.">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -110,13 +110,14 @@
         <img src="xcryptocappng.png" alt="XcryptoCap Logo">
     </div>
 
-    <h1>XcryptoCap - La plateforme de référencement crypto</h1>
-    <div id="google_translate_element"></div>
     <script>
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
         }
     </script>
+    <div id="google_translate_element"></div> 
+
+    <h1>XcryptoCap - La plateforme de référencement crypto</h1>
     
     <h2>Tokens listés</h2>
     <div class="crypto-container" id="crypto-list"></div>
@@ -243,41 +244,26 @@
         fetchPrices();
         setInterval(fetchPrices, 60000); // Update every 60 seconds
 
-        // **PAW Example - Fetching Data and Displaying the Chart (using Chart.js)**
+        // **PAW Example - Fetching Data and Displaying the Price (no chart for now)**
         // Replace 'YOUR_API_KEY' with your actual TokenInsight API key
-        // Replace 'your-chart-container-id' with the ID of the div where you want to display the chart
-        async function fetchAndDisplayChart(symbol, apiKey, chartContainerId) {
+        async function fetchAndDisplayPrice(symbol, apiKey, priceElementId) {
             try {
-                const chartData = await axios.get(`https://api.tokeninsight.com/api/v1/token/historical?symbol=${symbol}&apikey=${apiKey}`);
-
-                // Assuming the API response has data like this:
-                // chartData.data = {
-                //     labels: ["2023-10-27", "2023-10-28", "2023-10-29", "2023-10-30"],
-                //     prices: [1.2, 1.3, 1.4, 1.5]
-                // }
-
-                const ctx = document.getElementById(chartContainerId).getContext('2d');
-                const chart = new Chart(ctx, {
-                    type: 'line', // Use 'line' for a price chart
-                    data: {
-                        labels: chartData.data.labels, 
-                        datasets: [{
-                            label: `${symbol} Price`,
-                            data: chartData.data.prices,
-                            // ... (Customize chart styles)
-                        }]
-                    },
-                    // ... (Customize chart options)
-                });
+                const priceData = await axios.get(`https://api.tokeninsight.com/api/v1/token/price?symbol=${symbol}&apikey=${apiKey}`);
+                document.getElementById(priceElementId).textContent = priceData.data.price;
             } catch (error) {
-                console.error('Error fetching chart data:', error);
+                console.error('Error fetching price data:', error);
+                document.getElementById(priceElementId).textContent = 'N/A'; // Display "N/A" if error
             }
         }
 
         // Example Usage: 
-        // Display chart for StartarBronze using TokenInsight API
-        fetchAndDisplayChart('STRB', 'YOUR_API_KEY', 'strb-chart');
+        // Display price for StartarBronze using TokenInsight API
+        fetchAndDisplayPrice('STRB', 'Pro006549', 'strb-price');
+
+        // You can add similar functions for other tokens
+        // fetchAndDisplayPrice('BTC', 'YOUR_API_KEY', 'btc-price'); // Use your CoinGecko API
+        // fetchAndDisplayPrice('SOL', 'YOUR_API_KEY', 'sol-price'); // Use your CoinGecko API
+        // fetchAndDisplayPrice('ETH', 'YOUR_API_KEY', 'eth-price'); // Use your CoinGecko API
     </script>
-    <div id="strb-chart"></div> 
 </body>
 </html>
