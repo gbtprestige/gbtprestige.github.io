@@ -1,5 +1,5 @@
 # gbtprestige.github.io
-https://xcryptocap.r-b-a.fr
+https://xcryptocap.startarcoins.com
 
 # XcryptoCap - The Crypto Listing Platform
 
