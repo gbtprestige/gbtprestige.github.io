@@ -1,15 +1,13 @@
 {
   "name": "xcryptocap-api",
   "version": "1.0.0",
-  "description": "API for XcryptoCap platform",
+  "description": "API pour XcryptoCap",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "axios": "^1.4.0",
-    "dotenv": "^16.0.3"
+    "axios": "^1.2.2"
   }
 }
