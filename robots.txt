@@ -1,3 +1,4 @@
 User-agent: *
-Allow: /
+Disallow:
 Disallow: /admin.html 
+Sitemap: https://gbtprestige.github.io/sitemap.xml
