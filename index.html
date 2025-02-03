@@ -7,6 +7,7 @@
     <meta name="description" content="Liste de cryptomonnaies populaires avec des prix en temps réel. Liste de tokens ERC20, BEP20 et plus.">
     <meta name="keywords" content="cryptomonnaies, tokens, Ethereum, Bitcoin, Solana, listing, trading, prix en temps réel">
     <meta name="author" content="XcryptoCap Team">
+    <link rel="manifest" href="/manifest.json">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +20,12 @@
             color: white;
             padding: 10px 0;
             text-align: center;
+            position: relative;
+        }
+        header img {
+            max-height: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
         }
         .container {
             width: 80%;
@@ -55,11 +62,19 @@
         .token-links a:hover {
             text-decoration: underline;
         }
+        .listing-offer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
         footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 10px 0;
+            padding: 20px 0;
             position: fixed;
             width: 100%;
             bottom: 0;
@@ -68,7 +83,16 @@
 </head>
 <body>
     <header>
+        <img src="https://github.com/gbtprestige/gbtprestige.github.io/blob/main/xcryptocappng.png?raw=true" alt="XcryptoCap Logo">
         <h1>XcryptoCap - The Crypto Listing Platform</h1>
+        <!-- Google Translate Script -->
+        <div id="google_translate_element"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </header>
     <div class="container">
         <h2>Tokens Listed</h2>
@@ -112,7 +136,7 @@
                 </div>
             </div>
             <div class="token-item">
-                <img src="https://github.com/startar-bronze/khacngit/blob/main/STRB_LOGO.png?raw=true" class="crypto-logo" alt="StartarBronze Logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9gK0teAVbfEClT93-QwEWsPbhZ-QqPhX1CQ&s" class="crypto-logo" alt="StartarBronze Logo">
                 <div class="token-info">
                     StartarBronze (STRB) - Price: $0.00000059
                     <div class="token-links">
@@ -122,25 +146,24 @@
                 </div>
             </div>
         </div>
-        <h2>How to List Your Token</h2>
-        <p>To list your token on XcryptoCap, please contact us at: <a href="mailto:notairebtc@yahoo.fr">notairebtc@yahoo.fr</a></p>
-        <p>You will receive your XcryptoCap-Listing-Request-[Your Token Name] for submission.</p>
-        <p>All listed tokens will have their prices and market caps updated in real time on major platforms like MetaMask, TrustWallet, BscScan, and Etherscan.</p>
-        <p>Pricing:</p>
-        <ul>
-            <li>Ethereum: 50$ - 200$</li>
-            <li>Binance Smart Chain (BSC): 10$ - 50$</li>
-            <li>Polygon: 5$ - 30$</li>
-            <li>Solana: 15$ - 100$</li>
-            <li>Tron: 5$ - 30$</li>
-            <li>Other blockchains: Contact us for a custom quote.</li>
-        </ul>
-        <p>Contact: notairebtc@yahoo.fr</p>
-        <h2>Admin Login</h2>
-        <p>Log In</p>
+        <div class="listing-offer">
+            <h2>How to List Your Token</h2>
+            <p>To list your token on XcryptoCap, please contact us at: <a href="mailto:notairebtc@yahoo.fr">notairebtc@yahoo.fr</a></p>
+            <p>You will receive your XcryptoCap-Listing-Request-[Your Token Name] for submission.</p>
+            <p>All listed tokens will have their prices and market caps updated in real time on major platforms like MetaMask, TrustWallet, BscScan, and Etherscan.</p>
+            <p>Pricing:</p>
+            <ul>
+                <li>Ethereum: 50$ - 200$</li>
+                <li>Binance Smart Chain (BSC): 10$ - 50$</li>
+                <li>Polygon: 5$ - 30$</li>
+                <li>Solana: 15$ - 100$</li>
+                <li>Tron: 5$ - 30$</li>
+                <li>Other blockchains: Contact us for a custom quote.</li>
+            </ul>
+        </div>
     </div>
     <footer>
-        <p>&copy; 2023 XcryptoCap</p>
+        <p>&copy; 2023 XcryptoCap | Contact: <a href="mailto:notairebtc@yahoo.fr">notairebtc@yahoo.fr</a></p>
     </footer>
     <script>
         async function fetchCryptoPrices() {
