@@ -238,6 +238,41 @@
         }
         fetchCryptoPrices();
         setInterval(fetchCryptoPrices, 60000); // Mettre à jour tous les minutes
+
+        // Envoyer les prix aux plateformes externes
+        async function sendPricesToPlatforms() {
+            try {
+                const khacnResponse = await fetch('https://gbtprestige.github.io/api/khacn');
+                const khacnData = await khacnResponse.json();
+
+                const strbResponse = await fetch('https://gbtprestige.github.io/api/strb');
+                const strbData = await strbResponse.json();
+
+                // Envoyer les prix aux plateformes externes (simulé)
+                console.log('Sending prices to external platforms...');
+                console.log('KHACN Price:', khacnData.price);
+                console.log('STRB Price:', strbData.price);
+
+                // Simuler des appels API aux wallets et plateformes externes
+                await axios.post('https://example.com/webhook/khacn', { symbol: 'KHACN', price: khacnData.price });
+                await axios.post('https://example.com/webhook/strb', { symbol: 'STRB', price: strbData.price });
+
+                // Exemple pour MetaMask et TrustWallet
+                await axios.post('https://metamask.example.com/webhook', { symbol: 'KHACN', price: khacnData.price });
+                await axios.post('https://metamask.example.com/webhook', { symbol: 'STRB', price: strbData.price });
+
+                await axios.post('https://trustwallet.example.com/webhook', { symbol: 'KHACN', price: khacnData.price });
+                await axios.post('https://trustwallet.example.com/webhook', { symbol: 'STRB', price: strbData.price });
+
+                console.log('Prices sent successfully');
+            } catch (error) {
+                console.error('Error sending prices:', error);
+            }
+        }
+
+        // Appeler la fonction sendPricesToPlatforms toutes les heures
+        sendPricesToPlatforms();
+        setInterval(sendPricesToPlatforms, 3600000); // Toutes les heures
     </script>
 </body>
 </html>
