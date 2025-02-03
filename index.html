@@ -8,78 +8,140 @@
     <meta name="keywords" content="cryptomonnaies, tokens, Ethereum, Bitcoin, Solana, listing, trading, prix en temps réel">
     <meta name="author" content="XcryptoCap Team">
     <style>
-        .logo {
-            width: 100px; /* Taille initiale */
-            height: auto;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .token-list {
+            margin-top: 20px;
+        }
+        .token-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
         }
         .crypto-logo {
-            width: 50px; /* Taille initiale */
+            width: 50px;
             height: auto;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .token-info {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .token-links {
+            margin-top: 10px;
+        }
+        .token-links a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .token-links a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-    <h1>XcryptoCap - The Crypto Listing Platform</h1>
-    <h2>Tokens Listed</h2>
-    <h2>Popular Cryptocurrencies</h2>
-
-    <div>
-        <img src="logo-url.jpg" class="logo" alt="Logo">
+    <header>
+        <h1>XcryptoCap - The Crypto Listing Platform</h1>
+    </header>
+    <div class="container">
+        <h2>Tokens Listed</h2>
+        <h2>Popular Cryptocurrencies</h2>
+        <div class="token-list">
+            <div class="token-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/2000px-Bitcoin.svg.png" class="crypto-logo" alt="Bitcoin Logo">
+                <div class="token-info">
+                    Bitcoin (BTC) - Price: $<span id="btc-price">Loading...</span>
+                    <div class="token-links">
+                        <a href="https://www.blockchain.com/explorer">Blockchain.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="token-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Solana_logo.svg/2000px-Solana_logo.svg.png" class="crypto-logo" alt="Solana Logo">
+                <div class="token-info">
+                    Solana (SOL) - Price: $<span id="sol-price">Loading...</span>
+                    <div class="token-links">
+                        <a href="https://solscan.io/">Solscan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="token-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/2000px-Ethereum_logo_2014.svg.png" class="crypto-logo" alt="Ethereum Logo">
+                <div class="token-info">
+                    Ethereum (ETH) - Price: $<span id="eth-price">Loading...</span>
+                    <div class="token-links">
+                        <a href="https://etherscan.io/">Etherscan</a>
+                    </div>
+                </div>
+            </div>
+            <div class="token-item">
+                <img src="https://github.com/startar-bronze/khacngit/blob/main/PNG%20KHAC%20LOGO.png?raw=true" class="crypto-logo" alt="KharYsma Coins Logo">
+                <div class="token-info">
+                    KharYsma Coins (KHACN) - Price: $550
+                    <div class="token-links">
+                        <a href="https://app.uniswap.org/explore/tokens/ethereum/0x11c1b94294A7967092F747434dEE4876EcA5fD53">Uniswap</a>
+                        <a href="khacn.html">Plus d'informations sur KHACN</a>
+                    </div>
+                </div>
+            </div>
+            <div class="token-item">
+                <img src="https://github.com/startar-bronze/khacngit/blob/main/STRB_LOGO.png?raw=true" class="crypto-logo" alt="StartarBronze Logo">
+                <div class="token-info">
+                    StartarBronze (STRB) - Price: $0.00000059
+                    <div class="token-links">
+                        <a href="https://bscscan.com/token/0x550a5e9c90cC238Dd1AFD88A0680b4fEeB5F8Dd6">BscScan</a>
+                        <a href="strb.html">Plus d'informations sur STRB</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2>How to List Your Token</h2>
+        <p>To list your token on XcryptoCap, please contact us at: <a href="mailto:notairebtc@yahoo.fr">notairebtc@yahoo.fr</a></p>
+        <p>You will receive your XcryptoCap-Listing-Request-[Your Token Name] for submission.</p>
+        <p>All listed tokens will have their prices and market caps updated in real time on major platforms like MetaMask, TrustWallet, BscScan, and Etherscan.</p>
+        <p>Pricing:</p>
+        <ul>
+            <li>Ethereum: 50$ - 200$</li>
+            <li>Binance Smart Chain (BSC): 10$ - 50$</li>
+            <li>Polygon: 5$ - 30$</li>
+            <li>Solana: 15$ - 100$</li>
+            <li>Tron: 5$ - 30$</li>
+            <li>Other blockchains: Contact us for a custom quote.</li>
+        </ul>
+        <p>Contact: notairebtc@yahoo.fr</p>
+        <h2>Admin Login</h2>
+        <p>Log In</p>
     </div>
-
-    <div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/2000px-Bitcoin.svg.png" class="crypto-logo" alt="Bitcoin Logo">
-        Bitcoin (BTC) - Price: $<span id="btc-price">Loading...</span>
-        <br>
-        MetaMask | TrustWallet | <a href="https://www.blockchain.com/explorer">Blockchain.com</a>
-    </div>
-
-    <div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Solana_logo.svg/2000px-Solana_logo.svg.png" class="crypto-logo" alt="Solana Logo">
-        Solana (SOL) - Price: $<span id="sol-price">Loading...</span>
-        <br>
-        MetaMask | TrustWallet | <a href="https://solscan.io/">Solscan</a>
-    </div>
-
-    <div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/2000px-Ethereum_logo_2014.svg.png" class="crypto-logo" alt="Ethereum Logo">
-        Ethereum (ETH) - Price: $<span id="eth-price">Loading...</span>
-        <br>
-        MetaMask | TrustWallet | <a href="https://etherscan.io/">Etherscan</a>
-    </div>
-
-    <div>
-        <img src="https://github.com/startar-bronze/khacngit/blob/main/PNG%20KHAC%20LOGO.png?raw=true" class="crypto-logo" alt="KharYsma Coins Logo">
-        KharYsma Coins (KHACN) - Price: $550
-        <br>
-        MetaMask | TrustWallet | <a href="https://app.uniswap.org/explore/tokens/ethereum/0x11c1b94294A7967092F747434dEE4876EcA5fD53">Uniswap</a>
-    </div>
-
-    <div>
-        <img src="smart-contract-url.png" class="crypto-logo" alt="StartarBronze Logo">
-        StartarBronze (STRB) - Price: $0.00000059
-        <br>
-        MetaMask | TrustWallet | <a href="https://bscscan.com/token/0x550a5e9c90cC238Dd1AFD88A0680b4fEeB5F8Dd6">BscScan</a>
-    </div>
-
-    <h2>How to List Your Token</h2>
-    <p>To list your token on XcryptoCap, please contact us at: <a href="mailto:notairebtc@yahoo.fr">notairebtc@yahoo.fr</a></p>
-    <p>You will receive your XcryptoCap-Listing-Request-[Your Token Name] for submission.</p>
-    <p>All listed tokens will have their prices and market caps updated in real time on major platforms like MetaMask, TrustWallet, BscScan, and Etherscan.</p>
-    <p>Pricing:</p>
-    <ul>
-        <li>Ethereum: 50$ - 200$</li>
-        <li>Binance Smart Chain (BSC): 10$ - 50$</li>
-        <li>Polygon: 5$ - 30$</li>
-        <li>Solana: 15$ - 100$</li>
-        <li>Tron: 5$ - 30$</li>
-        <li>Other blockchains: Contact us for a custom quote.</li>
-    </ul>
-    <p>Contact: notairebtc@yahoo.fr</p>
-
-    <h2>Admin Login</h2>
-    <p>Log In</p>
-
+    <footer>
+        <p>&copy; 2023 XcryptoCap</p>
+    </footer>
     <script>
         async function fetchCryptoPrices() {
             try {
