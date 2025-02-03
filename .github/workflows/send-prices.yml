@@ -1,0 +1,27 @@
+name: Send Prices
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Exécuter toutes les heures
+
+jobs:
+  send-prices:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Send prices
+      run: node send-prices.js
+      env:
+        MY_BSCSCAN_API_KEY: ${{ secrets.MY_BSCSCAN_API_KEY }}
+        MY_ETHERSCAN_API_KEY: ${{ secrets.MY_ETHERSCAN_API_KEY }}
