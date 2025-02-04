@@ -113,7 +113,7 @@
 </head>
 <body>
     <header>
-        <img src="https://github.com/gbtprestige/gbtprestige.github.io/blob/main/xcryptocappng.png?raw=true" alt="XcryptoCap Logo">
+        <img src="https://github.com/gbtprestige/gbtprestige.github.io/raw/main/xcryptocappng.png" alt="XcryptoCap Logo">
         <h1>XcryptoCap - The Crypto Listing Platform</h1>
         <!-- Google Translate Script -->
         <div id="google_translate_element"></div>
@@ -156,7 +156,7 @@
                 </div>
             </div>
             <div class="token-item">
-                <img src="https://github.com/startar-bronze/khacngit/blob/main/PNG%20KHAC%20LOGO.png?raw=true" class="crypto-logo" alt="KharYsma Coins Logo">
+                <img src="https://github.com/startar-bronze/khacngit/raw/main/PNG%20KHAC%20LOGO.png" class="crypto-logo" alt="KharYsma Coins Logo">
                 <div class="token-info">
                     KharYsma Coins (KHACN) - Price: $<span id="khacn-price">550</span>
                     <div class="token-links">
@@ -263,14 +263,9 @@
                 const strbResponse = await fetch('https://xcryptocap.onrender.com/api/strb');
                 const strbData = await strbResponse.json();
 
-                // Envoyer les prix aux plateformes externes (simulé)
                 console.log('Sending prices to external platforms...');
                 console.log('KHACN Price:', khacnData.price);
                 console.log('STRB Price:', strbData.price);
-
-                // Simuler des appels API aux wallets et plateformes externes
-                // await axios.post('https://example.com/webhook/khacn', { symbol: 'KHACN', price: khacnData.price });
-                // await axios.post('https://example.com/webhook/strb', { symbol: 'STRB', price: strbData.price });
 
                 console.log('Prices sent successfully');
             } catch (error) {
