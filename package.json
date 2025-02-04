@@ -2,10 +2,9 @@
   "name": "xcryptocap",
   "version": "1.0.0",
   "description": "API pour XcryptoCap",
-  "main": "api/index.js",
+  "main": "index.js", // Point d'entrée principal
   "scripts": {
-    "build": "mkdir -p public && cp index.html khacn.html strb.html robots.txt sitemap.xml manifest.json public/",
-    "start": "node api/index.js"
+    "start": "node index.js" // Commande de démarrage
   },
   "dependencies": {
     "express": "^4.18.2",
