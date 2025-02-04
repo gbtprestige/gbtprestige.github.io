@@ -70,6 +70,21 @@
             border-radius: 5px;
             text-align: center;
         }
+        .blue-container {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .blue-container::after {
+            content: "";
+            display: block;
+            height: 20px; /* Hauteur de la barre de séparation */
+            background-color: white; /* Couleur de la barre de séparation */
+            clear: both;
+        }
         .separator {
             height: 20px; /* Espacement entre la bande bleue et le footer */
         }
@@ -161,11 +176,11 @@
                 </div>
             </div>
         </div>
-        <div class="listing-offer">
+        <div class="listing-offer blue-container">
             <h2>How to List Your Token</h2>
             <p>To list your token on XcryptoCap, please contact us at: <a href="mailto:notairebtc@yahoo.fr">notairebtc@yahoo.fr</a></p>
             <p>You will receive your XcryptoCap-Listing-Request-[Your Token Name] for submission.</p>
-            <p>All listed tokens will have their prices and market caps updated in real time on major platforms .</p>
+            <p>All listed tokens will have their prices and market caps updated in real time on major platforms.</p>
             <p>Pricing:</p>
             <ul>
                 <li>Ethereum: 50$ - 200$</li>
@@ -179,17 +194,6 @@
         <div class="separator"></div>
         <button class="install-button" id="install-button">Install XcryptoCap</button>
     </div>
-    .blue-container {
-    /* Autres styles */
-}
-
-.blue-container::after {
-    content: "";
-    display: block;
-    height: 20px; /* Hauteur de la barre de séparation */
-    background-color: white; /* Couleur de la barre de séparation */
-    clear: both;
-}
     <footer>
         <p>&copy; 2023 XcryptoCap | Contact: <a href="mailto:notairebtc@yahoo.fr">notairebtc@yahoo.fr</a></p>
     </footer>
@@ -265,15 +269,8 @@
                 console.log('STRB Price:', strbData.price);
 
                 // Simuler des appels API aux wallets et plateformes externes
-                await axios.post('https://example.com/webhook/khacn', { symbol: 'KHACN', price: khacnData.price });
-                await axios.post('https://example.com/webhook/strb', { symbol: 'STRB', price: strbData.price });
-
-                // Exemple pour MetaMask et TrustWallet
-                await axios.post('https://metamask.example.com/webhook', { symbol: 'KHACN', price: khacnData.price });
-                await axios.post('https://metamask.example.com/webhook', { symbol: 'STRB', price: strbData.price });
-
-                await axios.post('https://trustwallet.example.com/webhook', { symbol: 'KHACN', price: khacnData.price });
-                await axios.post('https://trustwallet.example.com/webhook', { symbol: 'STRB', price: strbData.price });
+                // await axios.post('https://example.com/webhook/khacn', { symbol: 'KHACN', price: khacnData.price });
+                // await axios.post('https://example.com/webhook/strb', { symbol: 'STRB', price: strbData.price });
 
                 console.log('Prices sent successfully');
             } catch (error) {
