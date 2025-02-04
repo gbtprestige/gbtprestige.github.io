@@ -237,14 +237,14 @@
             }
             // Fetching KHACN and STRB prices from the API
             try {
-                const khacnResponse = await fetch('https://gbtprestige.vercel.app/api/khacn');
+                const khacnResponse = await fetch('https://xcryptocap-jcd2w4qsv-gbtprestiges-projects.vercel.app/api/khacn');
                 const khacnData = await khacnResponse.json();
                 document.getElementById('khacn-price').textContent = khacnData.price.toFixed(2);
             } catch (error) {
                 console.error('Error fetching KHACN price:', error);
             }
             try {
-                const strbResponse = await fetch('https://gbtprestige.vercel.app/api/strb');
+                const strbResponse = await fetch('https://xcryptocap-jcd2w4qsv-gbtprestiges-projects.vercel.app/api/strb');
                 const strbData = await strbResponse.json();
                 document.getElementById('strb-price').textContent = parseFloat(strbData.price).toFixed(8);
             } catch (error) {
@@ -257,10 +257,10 @@
         // Envoyer les prix aux plateformes externes
         async function sendPricesToPlatforms() {
             try {
-                const khacnResponse = await fetch('https://gbtprestige.vercel.app/api/khacn');
+                const khacnResponse = await fetch('https://xcryptocap-jcd2w4qsv-gbtprestiges-projects.vercel.app/api/khacn');
                 const khacnData = await khacnResponse.json();
 
-                const strbResponse = await fetch('https://gbtprestige.vercel.app/api/strb');
+                const strbResponse = await fetch('https://xcryptocap-jcd2w4qsv-gbtprestiges-projects.vercel.app/api/strb');
                 const strbData = await strbResponse.json();
 
                 // Envoyer les prix aux plateformes externes (simulé)
