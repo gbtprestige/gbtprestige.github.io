@@ -15,10 +15,10 @@ app.get('/api/strb', (req, res) => {
 // Endpoint pour envoyer les prix aux plateformes externes
 app.post('/api/send-prices', async (req, res) => {
     try {
-        const khacnResponse = await fetch('https://gbtprestige.vercel.app/api/khacn');
+        const khacnResponse = await fetch('https://xcryptocap-jcd2w4qsv-gbtprestiges-projects.vercel.app/api/khacn');
         const khacnData = await khacnResponse.json();
 
-        const strbResponse = await fetch('https://gbtprestige.vercel.app/api/strb');
+        const strbResponse = await fetch('https://xcryptocap-jcd2w4qsv-gbtprestiges-projects.vercel.app/api/strb');
         const strbData = await strbResponse.json();
 
         // Envoyer les prix aux plateformes externes (simulé)
