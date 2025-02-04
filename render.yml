@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: xcryptocap
+    env: node
+    startCommand: "node index.js"
+    instanceType: micro
+    envVars:
+      - key: MY_BSCSCAN_API_KEY
+        value: ${MY_BSCSCAN_API_KEY}
+      - key: MY_ETHERSCAN_API_KEY
+        value: ${MY_ETHERSCAN_API_KEY}
