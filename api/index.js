@@ -15,10 +15,10 @@ app.get('/api/strb', (req, res) => {
 // Endpoint pour envoyer les prix aux plateformes externes
 app.post('/api/send-prices', async (req, res) => {
     try {
-        const khacnResponse = await fetch('https://xcryptocap-jcd2w4qsv-gbtprestiges-projects.vercel.app/api/khacn');
+        const khacnResponse = await fetch('https://xcryptocap.onrender.com/api/khacn');
         const khacnData = await khacnResponse.json();
 
-        const strbResponse = await fetch('https://xcryptocap-jcd2w4qsv-gbtprestiges-projects.vercel.app/api/strb');
+        const strbResponse = await fetch('https://xcryptocap.onrender.com/api/strb');
         const strbData = await strbResponse.json();
 
         // Envoyer les prix aux plateformes externes (simulé)
@@ -38,4 +38,7 @@ app.post('/api/send-prices', async (req, res) => {
     }
 });
 
-module.exports = app;
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
